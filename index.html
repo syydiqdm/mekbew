@@ -1,153 +1,286 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Saya</title>
-  <style>
-    * {margin: 0; padding: 0; box-sizing: border-box;}
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f5f5f5;
-      color: #333;
-      transition: background 0.3s, color 0.3s;
-    }
-    body.dark { background: #121212; color: #f1f1f1; }
-    body.dark header { background: rgba(255,255,255,0.05); }
-    body.dark .card { background: #1e1e1e; color: #f1f1f1; }
-    body.dark footer { background: #1e1e1e; color: #bbb; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Saya</title>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #f5f5f5, #e0e0e0);
+  background-size: 300% 300%;
+  color: #333;
+  transition: all 1s ease;
+  overflow-x: hidden;
+  position: relative;
+  animation: gradientMove 12s ease infinite;
+}
+body.dark {
+  background: linear-gradient(120deg, #0f0f0f, #1c1c1c, #2a2a2a);
+  color: #f1f1f1;
+}
 
-    header {
-      padding: 20px;
-      text-align: center;
-      background: #222;
-      color: white;
-      position: relative;
-    }
-    .toggle-btn {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      padding: 8px 15px;
-      border: none;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .toggle-btn:hover { transform: scale(1.1); }
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 60px 20px;
-    }
-    h1.section-title {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2.2rem;
-      color: #4facfe;
-    }
+header {
+  padding: 20px;
+  text-align: center;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  position: relative;
+  z-index: 2;
+  transition: background 1s, color 1s;
+}
+body.dark header { background: rgba(255,255,255,0.05); color: #f1f1f1; }
 
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-    .card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .card-content {
-      padding: 20px;
-    }
-    .card h3 { margin-bottom: 10px; }
-    .card p { font-size: 0.95rem; line-height: 1.5; }
-    .card a {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      border-radius: 25px;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.3s;
-    }
-    .card:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-    .card a:hover { transform: scale(1.1); }
+.toggle-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #222;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+body.dark .toggle-btn { color: #f1f1f1; }
+.toggle-btn:hover { transform: scale(1.1); box-shadow: 0 0 15px #4facfe; }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #222;
-      color: white;
-      margin-top: 40px;
-    }
-  </style>
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+h1.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.2rem;
+  color: #4facfe;
+  transition: color 1s;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s, background 1s, color 1s;
+}
+body.dark .card {
+  background: rgba(30,30,30,0.9);
+  color: #ddd;
+  box-shadow: 0 5px 15px rgba(255,255,255,0.05);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content { padding: 20px; }
+.card h3 { margin-bottom: 10px; }
+.card p { font-size: 0.95rem; line-height: 1.5; }
+.card a {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover { transform: scale(1.03); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+.card a:hover { transform: scale(1.1); box-shadow: 0 0 15px #4facfe; }
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  margin-top: 40px;
+  position: relative;
+  z-index: 2;
+  transition: background 1s, color 1s;
+}
+body.dark footer { background: rgba(255,255,255,0.05); color: #bbb; }
+
+#particles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+</style>
 </head>
 <body>
 
-  <header>
-    <h2>Project Portfolio</h2>
-    <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Dark</button>
-  </header>
+<canvas id="particles"></canvas>
 
-  <div class="container">
-    <h1 class="section-title">Daftar Project</h1>
-    <div class="projects">
-      <div class="card">
-        <img src="AM.jpg" alt="Project 1">
-        <div class="card-content">
-          <h3>GFX</h3>
-          <p>Website portofolio Galeri GFX.</p>
-          <a href="https://syydiqdm.github.io/Portofolio/" target="_blank">Lihat</a>
-        </div>
+<header>
+  <h2>Project Portfolio</h2>
+  <button class="toggle-btn" onclick="toggleDarkMode()"><i class="ri-moon-line"></i></button>
+</header>
+
+<div class="container">
+  <h1 class="section-title">Daftar Project</h1>
+  <div class="projects">
+    <div class="card">
+      <img src="AM.jpg" alt="Project 1">
+      <div class="card-content">
+        <h3>GFX</h3>
+        <p>Website portofolio Galeri GFX.</p>
+        <a href="https://syydiqdm.github.io/Portofolio/" target="_blank">Lihat</a>
       </div>
-      <div class="card">
-        <img src="jpg/project2.png" alt="Project 2">
-        <div class="card-content">
-          <h3>Project 2</h3>
-          <p>Aplikasi interaktif dengan fitur dark mode toggle.</p>
-          <a href="https://github.com/username/project2" target="_blank">Lihat</a>
-        </div>
+    </div>
+    <div class="card">
+      <img src="jpg/project2.png" alt="Project 2">
+      <div class="card-content">
+        <h3>Project 2</h3>
+        <p>Aplikasi interaktif dengan fitur dark mode toggle.</p>
+        <a href="https://github.com/username/project2" target="_blank">Lihat</a>
       </div>
-      <div class="card">
-        <img src="img/project3.jpg" alt="Project 3">
-        <div class="card-content">
-          <h3>Project 3</h3>
-          <p>Desain UI modern dengan animasi hover dan grid layout.</p>
-          <a href="https://github.com/username/project3" target="_blank">Lihat</a>
-        </div>
+    </div>
+    <div class="card">
+      <img src="img/project3.jpg" alt="Project 3">
+      <div class="card-content">
+        <h3>Project 3</h3>
+        <p>Desain UI modern dengan animasi hover dan grid layout.</p>
+        <a href="https://github.com/username/project3" target="_blank">Lihat</a>
       </div>
     </div>
   </div>
+</div>
 
-  <footer>
-    <p>&copy; 2025 | Dibuat dengan ❤️ oleh Nama Kamu</p>
-  </footer>
+<footer>
+  <p>&copy; 2025 | Dibuat dengan ❤️ oleh Nama Kamu</p>
+</footer>
 
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-      const btn = document.querySelector('.toggle-btn');
-      if(document.body.classList.contains('dark')){
-        btn.textContent = "☀️ Light";
-      } else {
-        btn.textContent = "🌙 Dark";
+<script>
+// ---- Tema Awal Sesuai Sistem ----
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+function setInitialTheme() {
+  if(prefersDark.matches){
+    document.body.classList.add('dark');
+    document.querySelector('.toggle-btn i').classList.replace('ri-moon-line','ri-sun-line');
+  } else {
+    document.body.classList.remove('dark');
+    document.querySelector('.toggle-btn i').classList.replace('ri-sun-line','ri-moon-line');
+  }
+}
+setInitialTheme();
+
+// Listener jika preferensi sistem berubah
+prefersDark.addEventListener('change', e => {
+  if(e.matches){
+    document.body.classList.add('dark');
+    document.querySelector('.toggle-btn i').classList.replace('ri-moon-line','ri-sun-line');
+  } else {
+    document.body.classList.remove('dark');
+    document.querySelector('.toggle-btn i').classList.replace('ri-sun-line','ri-moon-line');
+  }
+});
+
+// Toggle manual
+function toggleDarkMode(){
+  document.body.classList.toggle('dark');
+  const icon = document.querySelector('.toggle-btn i');
+  icon.classList.toggle('ri-moon-line');
+  icon.classList.toggle('ri-sun-line');
+}
+
+// ---- Partikel Background Interaktif ----
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particlesArray = [];
+let mouse = { x:null, y:null };
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('mousemove', function(e){
+  mouse.x = e.x;
+  mouse.y = e.y;
+});
+
+class Particle {
+  constructor(){
+    this.x = Math.random()*canvas.width;
+    this.y = Math.random()*canvas.height;
+    this.size = Math.random()*3 + 1;
+    this.speedX = (Math.random()-0.5)*0.5;
+    this.speedY = (Math.random()-0.5)*0.5;
+  }
+  update(){
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    // mengikuti kursor
+    if(mouse.x && mouse.y){
+      let dx = mouse.x - this.x;
+      let dy = mouse.y - this.y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist < 100){
+        this.x -= dx/50;
+        this.y -= dy/50;
       }
     }
-  </script>
+
+    if(this.x<0||this.x>canvas.width) this.speedX*=-1;
+    if(this.y<0||this.y>canvas.height) this.speedY*=-1;
+  }
+  draw(){
+    const color = document.body.classList.contains('dark') ? 'rgba(79,172,254,0.3)' : 'rgba(79,172,254,0.5)';
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fill();
+  }
+}
+
+function initParticles(){
+  particlesArray=[];
+  for(let i=0;i<100;i++) particlesArray.push(new Particle());
+}
+
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particlesArray.forEach(p=>{p.update(); p.draw();});
+  requestAnimationFrame(animateParticles);
+}
+
+initParticles();
+animateParticles();
+
+window.addEventListener('resize',()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  initParticles();
+});
+</script>
 
 </body>
 </html>
